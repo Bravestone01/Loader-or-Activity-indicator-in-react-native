@@ -1,20 +1,37 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+
+import { useState } from 'react';
+import {ActivityIndicator, Button, StatusBar, StyleSheet, Text, View } from 'react-native';
 
 export default function App() {
+  const [loader ,setLoader]=useState(false)
+
+  const displayLoader=()=>{
+setLoader(true)
+setTimeout(()=>{
+  setLoader(false)
+},5000)
+  }
+  
   return (
+    <>
+    <StatusBar/>
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+      <View>
+      <ActivityIndicator  size={100} animating={loader}/>
+      <Button title='Show Loader' onPress={displayLoader}/>
+
+        
+      </View>
+      
+    </View></>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent:"center",
+    alignItems:"center"
+    
   },
 });
